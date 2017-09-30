@@ -1,0 +1,28 @@
+##RenderMan RIB
+version 3.04
+Hider "raytrace" 
+Option "limits" "int proceduralmemory" [0]
+Option "ribparse" "string varsubst" ["$"]
+Option "statistics" "endofframe" [3]
+Option "statistics" "xmlfilename" ["arbre.xml"] "mode" ["w"]
+Display "arbre.tif" "tiff" "rgb" 
+Format 1024 1024 1
+Imager "background" "color background" [0.5 0.5 0.75]
+PixelSamples 11 11
+ShadingRate 0.25
+FrameBegin 1
+	Projection "perspective" "fov" [15]
+	Translate 0 -15 125
+	WorldBegin 
+		LightSource "distantlight" 2 "from" [1 1 -1]
+		ObjectBegin "leaf" 
+			Color [0 1 0]
+			SubdivisionMesh "catmull-clark" [4 4 4 4 4 4 4 4 4] [0 4 5 1 1 5 6 2 2 6 7 3 4 8 9 5 5 9 10 6 6 10 11 7 8 12 13 9 9 13 14 10 10 14 15 11] ["interpolateboundary"] [1 0] [2] [] "P" [0 0 0 0 0 0 0 0 0 0 0 0 -0.5 0 0.2 -0.166667 0 0.2 0.166667 0 0.2 0.5 0 0.2 -0.5 0 0.666667 -0.166667 0 0.666667 0.166667 0 0.666667 0.5 0 0.666667 0 0 1 0 0 1 0 0 1 0 0 1]
+		ObjectEnd 
+		Color [0.7 0.5 0.08]
+		Rotate -90 1 0 0
+		AttributeBegin 
+			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [66] "int MaxLevel" [5] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1]
+		AttributeEnd 
+	WorldEnd 
+FrameEnd 
