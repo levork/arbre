@@ -91,7 +91,6 @@
 #include <string.h>
 #define DLL /* Must be done on Windows to get the correct declspec */
 #include "ri.h"
-#include "rx.h"
 #include "RixInterfaces.h"
 
 #ifndef M_PI
@@ -1107,7 +1106,7 @@ PRMANEXPORT RtVoid Subdivide2(RtContextHandle ctx, RtFloat detail,
 
     if (params.instanceLevel != 0) {
         char buf[256];
-        RixContext *rix = RxGetRixContext();
+        RixContext *rix = RixGetContext();
         RixStorage* storage = (RixStorage*) rix->GetRixInterface(k_RixGlobalData);
         storage->Lock();
         sprintf(buf, "arbre%s", type);
