@@ -1,31 +1,3 @@
-/*
-# ------------------------------------------------------------------------------
-#
-# Copyright (c) 2012 Pixar Animation Studios. All rights reserved.
-#
-# The information in this file is provided for the exclusive use of the
-# software licensees of Pixar.  It is UNPUBLISHED PROPRIETARY SOURCE CODE
-# of Pixar Animation Studios; the contents of this file may not be disclosed
-# to third parties, copied or duplicated in any form, in whole or in part,
-# without the prior written permission of Pixar Animation Studios.
-# Use of copyright notice is precautionary and does not imply publication.
-#
-# PIXAR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
-# ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT
-# SHALL PIXAR BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES
-# OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-# WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-# ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
-# SOFTWARE.
-#
-# Pixar
-# 1200 Park Ave
-# Emeryville CA 94608
-#
-# ------------------------------------------------------------------------------
-*/
-
-
 // This is a partial implementation of Jason Weber and Joseph Penn's
 // paper, "Creation and Rendering of Realistic Trees", from SIGGRAPH
 // 1995. This code should not be treated as an example on how to
@@ -41,8 +13,13 @@
 // ternary stem splits, handling of -nCurveV (helical stems), or trunk
 // lobes.
 //
-// To use this plugin, compile it as a DSO and load it into
-// RiProcedural2:
+// To use this plugin, compile it as a DSO. On Linux, this can be done
+// using a command resembling:
+//
+// g++ -I$RMANTREE/include -fPIC -o arbre.so -shared arbre.cpp
+//
+// The resulting shared object can be loaded with RiProcedural2
+// using a recent version of prman:
 //
 // Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20
 //     -20 20 0 20] "string dsoname" ["arbre"] "int Seed" [66] "int
@@ -106,7 +83,7 @@
 // 
 //
 // Julian Fong <jfong@pixar.com>
-
+#include <vector>
 #include <deque>
 #include <math.h>
 #include <stdio.h>
@@ -989,6 +966,8 @@ growstem(const struct arbreParameters &params,
         baseradius, stemtipradius, length, -1 /* no parentLength */,
         parentV, 1.0f, 0.0f, base, coordSystem, unspreadAngles,
         unspreadAxes, basering, xsubi, result);
+
+    RiReadArchive("barkmaterial", NULL, NULL);
     
     RtToken toks[1] = {RI_P};
     RtPointer vals[1] = {&result.p[0]};
@@ -1050,7 +1029,7 @@ PRMANEXPORT RtVoid Subdivide2(RtContextHandle ctx, RtFloat detail,
     float length = -1, radius, v = 0.0f;
     int i, j;
     struct arbreParameters params;
-    RtToken type = "oak";
+    RtToken type = "tupelo";
     RtInt seed = 42; // Arbitrary default seed
 
     params.maxLevel = -1;

@@ -2,12 +2,12 @@
 version 3.04
 Hider "raytrace" 
 Integrator "PxrPathTracer" "tracer"
-Display "arbre.tif" "tiff" "rgb" 
+Display "oak.tif" "tiff" "rgb" 
 Format 1024 1024 1
 PixelVariance 0.01
 FrameBegin 1
 	Projection "perspective" "fov" [15]
-	Translate 0 -15 125
+	Translate 0 -5 75
 	WorldBegin 
 		Rotate -90 1 0 0
 		Light "PxrEnvDayLight" "PxrEnvDayLightShape1" "float intensity" [1] "float exposure" [0.0] "float haziness" [1.7] "color skyTint" [1 1 1] "color sunTint" [1 1 1] "float sunSize" [1] "int month" [7] "int day" [26] "int year" [2012] "float hour" [12.0] "float zone" [-8] "float latitude" [33.8121] "float longitude" [-117.919] "float specular" [1] "float diffuse" [1] "int enableShadows" [1] "color shadowColor" [0 0 0] "float shadowDistance" [-1] "float shadowFalloff" [-1] "float shadowFalloffGamma" [1] "string shadowSubset" [""] "string shadowExcludeSubset" [""] "int traceLightPaths" [0] "int thinShadow" [1] "int fixedSampleCount" [0] "string lightGroup" [""] "__instanceid" ["PxrEnvDayLightShape1_0"]
@@ -22,11 +22,16 @@ FrameBegin 1
 		ArchiveEnd
 		AttributeBegin 
 			Translate 5 0 0
-			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [66] "int MaxLevel" [5] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1]
+			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [64] "int MaxLevel" [4] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1] "string Type" ["oak"]
 		AttributeEnd 
 		AttributeBegin 
-			Translate -5 0 0
-			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [77] "int MaxLevel" [5] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1]
+			Translate -5 5 0
+			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [25] "int MaxLevel" [4] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1] "string Type" ["oak"]
 		AttributeEnd 
+		AttributeBegin 
+			Translate 0 -20 0
+			Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20 -20 20 0 40] "string dsoname" ["arbre"] "int Seed" [89] "int MaxLevel" [4] "int StartLevel" [0] "int InstanceLevel" [3] "int Leaves" [1] "int InstanceLeaves" [1] "string Type" ["oak"]
+		AttributeEnd 
+
 	WorldEnd 
 FrameEnd 

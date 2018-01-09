@@ -11,8 +11,13 @@ Sections 4.1 through 4.5 of the Penn/Weber paper are mostly implemented, 4.6
 through 4.9 are not. I also did not implement ternary stem splits, handling of
 -nCurveV (helical stems), or trunk lobes.
 
-To use this plugin, compile it as a DSO and load it into
-RiProcedural2:
+To use this plugin, compile it as a DSO. On Linux, this can be done
+using a command resembling:
+
+g++ -I$RMANTREE/include -fPIC -o arbre.so -shared arbre.cpp
+
+The resulting shared object can be loaded with RiProcedural2
+using a recent version of prman:
 
 Procedural2 "DynamicLoad" "SimpleBound" "float[6] bound" [-20 20
     -20 20 0 20] "string dsoname" ["arbre"] "int Seed" [66] "int
